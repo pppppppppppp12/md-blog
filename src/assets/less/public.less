@@ -1,0 +1,350 @@
+@import './function.less';
+@import './animation.less';
+
+/* Class */
+.clearfix{ zoom: 1; }
+.clearfix:after{ content: ""; display: block; visibility: hidden; height: 0; line-height: 0; font-size: 0; clear: both; }
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+// 水平列表 ul
+.list-inline li {
+    display: inline-block;
+}
+// 页面最小宽度
+.content {
+  max-width: 1200px;
+  min-width: 1200px;
+  margin: 0 auto;
+}
+.text-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+// 改变选中状态颜色
+body ::selection {
+  background: #d8ebff;
+}
+body ::-moz-selection {
+  background: #d8ebff
+}
+// body {
+//   // 防止切换时页面抖动
+//   overflow-y: scroll;
+// }
+
+/* 滚动条 start */
+.small-scroll-y{ overflow-y: auto; }
+.small-scroll-y::-webkit-scrollbar{
+  width: 4px;
+  height: 4px;
+}
+.small-scroll-8::-webkit-scrollbar{
+  width: 8px;
+  height: 8px;
+}
+.small-scroll-y::-webkit-scrollbar-track{
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+.small-scroll-8::-webkit-scrollbar-track{
+  border-radius: 6px;
+  background-color: rgba(204, 204, 204, 0.2);
+}
+.small-scroll-y::-webkit-scrollbar-thumb{
+  background-color: rgba(204, 204, 204, 0.3);
+  border-radius: 6px;
+}
+.small-scroll-8::-webkit-scrollbar-thumb{
+  background-color: rgba(204, 204, 204, 1);
+  border-radius: 6px;
+}
+/* 滚动条 end */
+
+/* 进度条 start */
+.progress {
+  overflow: hidden;
+  height: 20px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.progress-bar {
+  float: left;
+  width: 0%;
+  height: 100%;
+  font-size: 12px;
+  line-height: 20px;
+  color: #ffffff;
+  text-align: center;
+  background-color: #428bca;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  -webkit-transition: width 0.6s ease;
+  -o-transition: width 0.6s ease;
+  transition: width 0.6s ease;
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;
+}
+.progress-bar.active{
+  .progressBar();
+  .animation(progressBar 1s linear infinite);
+}
+/* 进度条 end */
+
+// 公共颜色
+@primary: #6190e8;
+@secondary: #fff;
+@green: #5cb85c;
+@info: #5bc0de;
+@warn: #f0ad4e;
+@danger: #d9534f;
+
+// 公共图标
+
+// 公共按钮
+.btn {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 0 16px;
+  font-size: 14px;
+  border-radius: 3px;
+  line-height: 33px;
+  -webkit-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
+.btn-secondary{ border: 1px #d6d6d6 solid; }
+
+.btn-white { color: #000; background-color: #ffffff; }
+.btn-primary{ color: #fff; background-color: @primary; }
+.btn-secondary{ color: #000; background-color: @secondary; }
+.btn-green{ color: #fff; background-color: @green; }
+.btn-info{ color: #fff; background-color: @info; }
+.btn-warn{ color: #fff; background-color: @warn; }
+.btn-danger{ color: #fff; background-color: @danger; }
+
+.btn-white:hover{ background-color: #ffffff + #181818 }
+.btn-primary:hover{ background-color: @primary + #181818 }
+.btn-secondary:hover{ background-color: @secondary - #181818 }
+.btn-green:hover{ background-color: @green + #181818 }
+.btn-info:hover{ background-color: @info + #181818 }
+.btn-warn:hover{ background-color: @warn + #181818 }
+.btn-danger:hover{ background-color: @danger + #181818 }
+
+// modal 弹框
+.modal-wrapper{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  .flex();
+  .flex-justify-content(center);
+  .flex-align-items(center);
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  pointer-events: auto;
+  // 播放动画的 弹层, 如果想不播放动画 则 .modal-cont.no-animation
+  .modal-cont{
+    position: relative;
+    width: 500px;
+    background-color: #fff;
+    border: 1px #aaa solid;
+    border-radius: 4px;
+    box-shadow: 1px 1px 10px 0 #888;
+    z-index: 10;
+    .fadeInDown();
+    .animation(fadeInDown 0.3s ease-in-out);
+    .head, .body, .foot{
+      padding: 0 15px;
+    }
+    .head{
+      height: 45px;
+      line-height: 45px;
+      font-size: 18px;
+      border-bottom: 1px #ececec solid;
+      span.pull-right{
+        font-size: 24px;
+        text-align: center;
+        /*background-color: #ddd;*/
+        cursor: pointer;
+        margin-right: -5px;
+        opacity: 0.5;
+        color: #666;
+      }
+      span.pull-right:hover{
+        opacity: 1;
+      }
+    }
+    .body{
+      padding: 30px 15px;
+      min-height: 60px;
+      line-height: 30px;
+    }
+    .foot{
+      padding: 8px 15px;
+      border-top: 1px #ececec solid;
+      text-align: right;
+      button{
+        margin-left: 10px;
+      }
+    }
+  }
+  .modal-bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    .fadeIn();
+    .animation(fadeIn 0.3s ease-in-out);
+  }
+  .form-control {
+    border: 1px solid #ddd;
+    resize: none;
+    width: 100%;
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 3px;
+  }
+}
+// 公共小弹框
+.modal-item {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.15);
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+  z-index: 50;
+  width: auto;
+  border-radius: 3px;
+  text-align: left;
+  max-height: 300px;
+  overflow: auto;
+  &:before {
+    position: absolute;
+    top: -10px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    content: " ";
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border-left: 10px transparent solid;
+    border-right: 10px transparent solid;
+    border-bottom: 10px #fff solid;
+  }
+  .item {
+    color: #666;
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 15px;
+    cursor: pointer;
+    .text-overflow;
+    + item {
+      border-top: 1px #ddd dotted;
+    }
+  }
+  .item:hover{
+    background-color: #f3f3f3;
+  }
+}
+
+// 不进行播放动画
+.no-animation{
+  .animation(none) !important;
+}
+
+// loading
+.loading-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  top: 0;
+  left: 0;
+  z-index: 997;
+}
+.loading {
+  font-size: 10px;
+  top: 40%;
+  left: 50%;
+  margin-left: -25px;
+  margin-top: -50px;
+  text-indent: -9999em;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #d5d5d5;
+  background: -moz-linear-gradient(left, #d5d5d5 10%, rgba(255, 255, 255, 0) 42%);
+  background: -webkit-linear-gradient(left, #d5d5d5 10%, rgba(255, 255, 255, 0) 42%);
+  background: -o-linear-gradient(left, #d5d5d5 10%, rgba(255, 255, 255, 0) 42%);
+  background: -ms-linear-gradient(left, #d5d5d5 10%, rgba(255, 255, 255, 0) 42%);
+  background: linear-gradient(to right, #d5d5d5 10%, rgba(255, 255, 255, 0) 42%);
+  position: relative;
+  -webkit-animation: loadshow 0.4s infinite linear;
+  animation: loadshow 0.4s infinite linear;
+}
+.loading:before {
+  width: 50%;
+  height: 50%;
+  background: #d5d5d5;
+  border-radius: 100% 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+}
+.loading:after {
+  background: #fff;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: '';
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+@-webkit-keyframes loadshow {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes loadshow {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

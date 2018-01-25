@@ -1,0 +1,82 @@
+// 动画
+// 平面旋转
+@keyframes rotateZ {
+    from { .transform(rotate(0deg)); }
+    to { .transform(rotate(360deg)); }
+}
+@keyframes rotateHZ {
+    from { .transform(rotate(0deg)); }
+    to { .transform(rotate(180deg)); }
+}
+
+.keyframes(@name) { 
+  @-webkit-keyframes @name {
+    .-frames(-webkit-)
+  }
+  @-moz-keyframes @name {
+    .-frames(-moz-)
+  }
+  @-o-keyframes @name {
+    .-frames(-o-)
+  }
+  @-ms-keyframes @name {
+    .-frames(-ms-)
+  }
+  @keyframes @name {
+    .-frames()
+  }
+}
+
+// 进度条的专属 动画
+.progressBar(@n: progressBar){
+  .keyframes(@n);
+  .-frames(@-...){
+    0% {
+      background-position: 40px 0;
+    }
+    100% {
+      background-position: 0 0;
+    }
+  }
+}
+
+.opacity(@number){
+  opacity: @number / 100;
+  filter:alpha(opacity=@number);
+}
+.fadeIn(@x: 0;@y: 0;@n: fadeIn){
+    .keyframes(@n);
+    .-frames(@-...){
+        0% {
+            .opacity(0);
+            @{-}transform: translate3d(@x, @y, 0);
+        }
+        100% {
+            .opacity(100);
+            @{-}transform: none;
+        }
+    }
+}
+.fadeInDown(@n:fadeInDown){
+  .keyframes(@n);
+  .-frames(@-...){
+    0% {
+      .opacity(0);
+      @{-}transform: translate3d(0, -100px, 0);
+    }
+    100% {
+      .opacity(100);
+      @{-}transform: none;
+    }
+  }
+}
+
+// 类名
+.fadeIn{
+  .fadeIn();
+  .animation(fadeIn 0.3s ease-in-out);
+}
+.fadeInDown{
+  .fadeInDown();
+  .animation(fadeInDown 0.3s ease-in-out);
+}
